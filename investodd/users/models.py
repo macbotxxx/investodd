@@ -49,6 +49,15 @@ class User(AbstractUser):
     """Default user for investodd."""
     objects = UserManager()
 
+    KYC_STATUS = (
+        ('unverified', _('Unverified')),
+        ('pending', _('Pending')),
+        ('verified', _('Verified')),
+        ('action_required', _('Action_required')),
+        ('cancelled', _('Cancelled')),
+        ('rejected', _('Rejected/Refused'))
+    )
+
 
     id = models.UUIDField(
         default = uuid.uuid4,
@@ -88,6 +97,68 @@ class User(AbstractUser):
         help_text=_("The last nammes of the investor.")
     )
 
+    date_of_birth = models.DateField(
+        verbose_name=_("Date of birth"),
+        blank=True,
+        null=True,
+        help_text=_("The date of birth of the customer.")
+    )
+
+    kyc_complete = models.BooleanField(
+        verbose_name=_("KYC complete"),
+        default=False,
+        help_text=_("Flag to determine if a cutomer have completed KYC verification")
+    )
+
+    kyc_complete_date = models.DateTimeField(
+        verbose_name=_("KYC complete date"),
+        blank=True,
+        null=True,
+        help_text=_("Timestamp when customer completed KYC verifiction process.")
+    )
+
+    kyc_status = models.CharField(
+        max_length=15,
+        verbose_name=_("KYC status"),
+        choices=KYC_STATUS,
+        default='Unverified',
+        blank=True,
+        null=True,
+        help_text=_("The .")
+    )
+
+
+    kyc_submitted = models.BooleanField(
+        verbose_name=_("KYC submitted"),
+        blank=True,null=True,
+        help_text=_("Flag to determine if customer has submitted a KYC verification.")
+    )
+
+    default_currency_id = models.CharField(
+        max_length=3,
+        verbose_name=_("Default Currency ID"),
+        blank=True, null=True,
+        default='USD',
+        help_text=_("The default currency of the investor. Currency will be sent against investors country of residence.")
+    )
+
+    available_balance = models.IntegerField(
+        verbose_name=_("Available Balance"),
+        null =True, blank=True, default = 0,
+        help_text=_("The investors available balance for the account")
+    )
+
+    withdrawal_balance = models.IntegerField(
+        verbose_name=_("Withdrawal Balance"),
+        null =True, blank=True, default = 0,
+        help_text=_("The investors withdrable balance for the account")
+    )
+
+    referral_bonus = models.IntegerField(
+        verbose_name=_("Referral Bonus"),
+        null =True, blank=True, default = 0,
+        help_text=_("The investors referral bonus balance for the account")
+    )
 
    
 

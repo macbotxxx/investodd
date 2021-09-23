@@ -34,6 +34,9 @@
                                 </div>
                             </div>
                         </div>
+
+
+
                         <form class="login" method="POST" action="{% url 'account_login' %}">
                             {%csrf_token%}
                             <div class="form-group">
@@ -42,7 +45,7 @@
                             <div class="form-group">
                                 <div class="form-label-group">
                                     <label class="form-label" for="password"></label>
-                                    <a class="link link-primary link-sm" href="{%url 'account_reset_password' %}">Forgot Code?</a>
+                                    <a class="link link-primary link-sm" href="{%url 'account_reset_password' %}">Forgot Password?</a>
                                 </div>
                                 
                             </div>
@@ -53,6 +56,8 @@
                                 <button class="btn btn-lg btn-primary btn-block">Sign in</button>
                             </div>
                         </form>
+                        <div class="form-note-s2 text-center pt-4"> New to InvestOdd ? <a href="{{ signup_url }}"><strong>Create an account</strong></a>
+                        </div>
                        
                         </ul>
                     </div>
