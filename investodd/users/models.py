@@ -89,13 +89,7 @@ class User(AbstractUser):
     )
 
 
-    profile_image = models.ImageField(
-        verbose_name=_("Profile Image"),
-        blank = True, null=True,
-        default = 'profile_image/default.png',
-        upload_to = 'profile_image/',
-        help_text=_("The profile image of the investor.")
-    )
+   
 
     class Meta:
         verbose_name = _("Register Investor")

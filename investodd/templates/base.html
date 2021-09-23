@@ -17,86 +17,215 @@
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
 
     {% block css %}
-    <!-- Latest compiled and minified Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    {% compress css %}
 
-    <!-- Your stuff: Third-party CSS libraries go here -->{% compress css %}
-    <!-- This file stores project-specific CSS -->
-    <link href="{% static 'css/project.css' %}" rel="stylesheet">{% endcompress %}
+    <!-- Bundle and Base CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/vendor.bundle.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style-lobelia.css' %}" id="changeTheme">
+    <!-- Extra CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+
+    {% endcompress %}
     {% endblock %}
     <!-- Le javascript
     ================================================== -->
     {# Placed at the top of the document so pages load faster with defer #}
     {% block javascript %}
       <!-- Bootstrap JS and its dependencies-->
-      <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-      <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
 
       <!-- Your stuff: Third-party javascript libraries go here -->
 
-      <!-- place project specific Javascript in this file -->{% compress js %}
-      <script defer src="{% static 'js/project.js' %}"></script>{% endcompress %}
+      <!-- place project specific Javascript in this file -->
+      {% compress js %}
+      <script defer src="{% static 'assets/js/jquery.bundle.js' %}"></script>
+      <script defer src="{% static 'assets/js/scripts.js' %}"></script>
+      <script defer src="{% static 'assets/js/charts.js' %}"></script>
+      {% endcompress %}
 
     {% endblock javascript %}
 
   </head>
 
-  <body>
+  <body class="nk-body body-wider mode-onepage bg-light">
 
-    <div class="mb-1">
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="{% url 'home' %}">investodd</a>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">About</a>
-            </li>
-            {% if request.user.is_authenticated %}
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% translate "My Profile" %}</a>
-              </li>
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>
-              </li>
-            {% else %}
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% translate "Sign Up" %}</a>
-              </li>
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
-              </li>
-            {% endif %}
-          </ul>
+    <div class="nk-wrap">
+      <header class="nk-header page-header is-transparent is-sticky is-shrink" id="header">
+          <!-- Header @s -->
+        <div class="header-main">
+          <div class="header-container container">
+            <div class="header-wrap">
+              <!-- Logo @s -->
+              <div class="header-logo logo animated" data-animate="fadeInDown" data-delay=".6">
+                <a href="./" class="logo-link">
+                  <img class="logo-dark" src="{% static 'images/logo.png' %}" srcset="{% static 'images/logo2x.png' %} 2x" alt="logo">
+                  <img class="logo-light" src="{% static 'images/logo-full-white.png' %}" srcset="{% static 'images/logo-full-white2x.png' %} 2x" alt="logo">
+                </a>
+              </div>
+  
+              <!-- Menu Toogle @s -->
+              <div class="header-nav-toggle">
+                <a href="#" class="navbar-toggle" data-menu-toggle="header-menu">
+                                  <div class="toggle-line">
+                                      <span></span>
+                                  </div>
+                              </a>
+              </div>
+  
+              <!-- Menu @s -->
+              <div class="header-navbar animated" data-animate="fadeInDown" data-delay=".75">
+                <nav class="header-menu" id="header-menu">
+      <ul class="menu">
+      <li class="menu-item ">
+          <a class="menu-link nav-link menu-toggle " href="/">Home</a>
+      </li>
+      <li class="menu-item ">
+        <a class="menu-link nav-link menu-toggle " href="/">About</a>
+    </li>
+    <li class="menu-item ">
+      <a class="menu-link nav-link menu-toggle " href="/">FAQs</a>
+    </li>
+      <li class="menu-item ">
+        <a class="menu-link nav-link menu-toggle " href="/">Contact Us</a>
+    </li>
+    <li class="menu-item ">
+      <a class="menu-link nav-link menu-toggle " href="/">Features</a>
+    </li>
+    <li class="menu-item ">
+      <a class="menu-link nav-link menu-toggle " href="/">Home</a>
+    </li>
+    <li class="menu-item ">
+      <a class="menu-link nav-link menu-toggle " href="/">Home</a>
+    </li>
+     
+     
+  </ul>
+  
+      <ul class="menu-btns">
+          <li><a href="{% url 'account_login' %}" class="btn btn-md btn-auto btn-primary no-change"><span>Login</span></a></li>
+      </ul>
+      <ul class="menu-btns">
+        <li><a href="{% url 'account_signup' %}" class="btn btn-md btn-auto btn-danger no-change"><span>Register</span></a></li>
+    </ul>
+  </nav>
+              </div><!-- .header-navbar @e -->
+            </div>                                                
+          </div>
+        </div><!-- .header-main @e -->
+  
+        <!-- Banner @s -->
+        <div class="header-banner bg-theme-grad">
+          <div class="nk-banner">
+              <div class="banner banner-fs banner-pd-lg">
+                  <div class="banner-wrap">
+                              <div class="container">
+                                  <div class="row gutter-vr-30px align-items-center justify-content-lg-between justify-content-center">
+                                      <div class="col-lg-5 col-sm-9 order-lg-last">
+                                          <div class="banner-gfx-re-s3 my-0 animated" data-animate="fadeInUp" data-delay="1">
+                                              <img src="{% static 'images/header/gfx-i.png' %}" alt="header">
+                                          </div>
+                                      </div><!-- .col -->
+                                      <div class="col-lg-7 col-xl-6 col-sm-10 text-center text-lg-left">
+                                          <div class="banner-caption cpn tc-light">
+                                              <div class="cpn-head"> 
+                                                  <h1 class="title title-md animated" data-animate="fadeInUp" data-delay="1.1">The New Model of <br class="d-none d-md-block">Crypto-Currency Business</h1>
+                                              </div>
+                                              <div class="cpn-text cpn-text-light">
+                                                  <p class="lead animated" data-animate="fadeInUp" data-delay="1.2">A clever solution on how to combine user-optimized interface and high functionality on one platform.</p>
+                                              </div>
+                                              <div class="cpn-action mt-0">
+                                                  <div class="cpn-btns pt-4 animated" data-animate="fadeInUp" data-delay="1.3">
+                                                      <ul class="btn-grp">
+                                                          <li><a href="#" class="btn btn-primary btn-lg">Get Started</a></li>
+                                                          <li><a href="#" class="btn btn-outline btn-primary on-bg-theme-alt btn-lg">Contact Us</a></li>
+                                                      </ul>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div><!-- .col -->
+                                  </div><!-- .row -->
+                              </div>
+                          </div>
+              </div>
+          </div><!-- .nk-banner -->
+          <div class="nk-ovm mask-f mask-contain-bottom shape-a2"></div>
+                 
+                  <!-- Place Particle Js -->
+              <!-- <div id="particles-bg" class="particles-container particles-bg"></div> -->
         </div>
-      </nav>
-
-    </div>
-
-    <div class="container">
-
-      {% if messages %}
-          {% for message in messages %}
-              <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-          {% endfor %}
-      {% endif %}
+        <!-- .header-banner @e -->
+      </header>
 
       {% block content %}
         <p>Use this document as a way to quick start any new project.</p>
       {% endblock content %}
 
-    </div> <!-- /container -->
+      <footer class="nk-footer bg-theme-grad ov-h">
+        <section class="section section-t-xl tc-light pdb-0 animated" data-animate="fadeInUp" data-delay=".1">
+            <div class="container">
+                <!-- Block @s -->
+                <div class="nk-block">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-8 col-mb-9">
+                            <div class="section-head section-head-sm wide-auto-sm text-center">
+                                <h4 class="title">Subscribe to Us</h4>
+                                <p>If you want to get update news please subscribe to us.</p>
+                            </div>
+                            <form action="form/subscribe.php" class="nk-form-submit" method="post">
+                                <div class="field-inline field-split bg-white shadow-soft">
+                                    <div class="field-wrap d-flex align-items-center">
+                                        <label class="label-inline mb-0 d-none d-sm-block"><i class="mt-1 icon fas fa-envelope"></i></label>
+                                        <input class="input-solid input-solid-lg required email" type="text" name="contact-email" placeholder="Enter your email">
+                                        <input type="text" class="d-none" name="form-anti-honeypot" value="">
+                                    </div>
+                                    <div class="submit-wrap">
+                                        <button class="btn btn-primary">Subscribe</button>
+                                    </div>
+                                </div>
+                                <div class="form-results"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- .block @e -->
+            </div>
+        </section>
+        <section class="section tc-light animated" data-animate="fadeInUp" data-delay=".2">
+            <div class="container">
+                <div class="nk-block">
+                    <div class="gutter-vr-15px px row justify-content-between align-items-center text-center text-sm-left">
+                        <div class="col-lg-4">
+                            <ul class="social justify-content-center ml-n2">
+                                <li><a href="#"><em class="social-icon social-icon-transparent fab fa-facebook-f"></em></a></li>
+                                <li><a href="#"><em class="social-icon social-icon-transparent fab fa-twitter"></em></a></li>
+                                <li><a href="#"><em class="social-icon social-icon-transparent fab fa-youtube"></em></a></li>
+                                <li><a href="#"><em class="social-icon social-icon-transparent fab fa-github"></em></a></li>
+                                <li><a href="#"><em class="social-icon social-icon-transparent fab fa-bitcoin"></em></a></li>
+                                <li><a href="#"><em class="social-icon social-icon-transparent fab fa-medium-m"></em></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-5 col-sm-8">
+                            <div class="copyright-text copyright-text-s4">
+                                <p>© Copyright 2019, ICO Crypto. All Rights Reserved.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 text-sm-right">
+                            <ul class="footer-links">
+                                <li><a href="#">Terms &amp; Conditions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+  <div class="nk-ovm mask-f-footer shape-z3"></div>
+</footer>
+</div>
+
+  
+	<!-- preloader -->
+	<div class="preloader preloader-alt no-split"><span class="spinner spinner-alt"><img class="spinner-brand" src="{% static 'images/logo-full-white.png' %}" alt=""></span></div>
 
     {% block modal %}{% endblock modal %}
 

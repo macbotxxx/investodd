@@ -1,0 +1,72 @@
+{% load static i18n compress%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}investodd{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="investodd is a platform where individuals or organizations can invest on an asset or item with the goal of generating income or appreciation using crypto currency or any means available.">
+    <meta name="author" content="Michael jr Assanama">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+
+    {% block css %}
+  
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    {% compress css %}
+
+    <!-- Bundle and Base CSS -->
+    <link rel="stylesheet" href="{% static 'sandbox/assets/css/dashlite.css' %}">
+    <link id="skin-default" rel="stylesheet" href="{% static 'sandbox/assets/css/theme.css' %}">
+
+    {% endcompress %}
+    {% endblock %}
+    <!-- Le javascript
+    ================================================== -->
+    {# Placed at the top of the document so pages load faster with defer #}
+    {% block javascript %}
+      <!-- Bootstrap JS and its dependencies-->
+    
+
+      <!-- Your stuff: Third-party javascript libraries go here -->
+
+      <!-- place project specific Javascript in this file -->
+      {% compress js %}
+      <script defer src="{% static 'sandbox/assets/js/bundle.js' %}"></script>
+      <script defer src="{% static 'sandbox/assets/js/scripts.js' %}"></script>
+      <script defer src="{% static 'sandbox/assets/js/example-toastr.js' %}"></script>
+
+      {% endcompress %}
+
+    {% endblock javascript %}
+
+  </head>
+
+  <body class="nk-body bg-white npc-general pg-auth">
+    <div class="nk-app-root">
+      
+
+    {% block content %}
+
+
+    {% endblock %}
+</div>
+
+  
+	<!-- preloader -->
+	<div class="preloader preloader-alt no-split"><span class="spinner spinner-alt"><img class="spinner-brand" src="{% static 'images/logo-full-white.png' %}" alt=""></span></div>
+
+    {% block modal %}{% endblock modal %}
+
+    {% block inline_javascript %}
+    {# Script tags with only code, no src (defer by default) #}
+    
+    {% endblock inline_javascript %}
+  </body>
+</html>

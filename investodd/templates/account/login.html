@@ -1,6 +1,6 @@
 {% extends "account/base.html" %}
 
-{% load i18n %}
+{% load static i18n %}
 {% load account socialaccount %}
 {% load crispy_forms_tags %}
 
@@ -8,40 +8,100 @@
 
 {% block inner %}
 
-<h1>{% translate "Sign In" %}</h1>
 
-{% get_providers as socialaccount_providers %}
 
-{% if socialaccount_providers %}
-<p>{% blocktranslate with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktranslate %}</p>
 
-<div class="socialaccount_ballot">
 
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-
-  <div class="login-or">{% translate 'or' %}</div>
-
+<div class="nk-main ">
+    <!-- wrap @s -->
+    <div class="nk-wrap nk-wrap-nosidebar">
+        <!-- content @s -->
+        <div class="nk-content ">
+            <div class="nk-block nk-block-middle nk-auth-body  wide-xs">
+                <div class="brand-logo pb-4 text-center">
+                    <a href="/" class="logo-link">
+                        <img class="logo-light logo-img logo-img-lg" src="{% static 'sandbox/images/logo.png' %}" srcset="{% static 'sandbox/images/logo2x.png' %} 2x" alt="logo">
+                        <img class="logo-dark logo-img logo-img-lg" src="{% static 'sandbox/images/logo-dark.png' %}" srcset="{% static 'sandbox/images/logo-dark2x.png' %} 2x" alt="logo-dark">
+                    </a>
+                </div>
+                <div class="card ">
+                    <div class="card-inner card-inner-lg">
+                        <div class="nk-block-head">
+                            <div class="nk-block-head-content">
+                                <h4 class="nk-block-title">Sign-In</h4>
+                                <div class="nk-block-des">
+                                    <p>Access the investodd panel using your email and passcode.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="login" method="POST" action="{% url 'account_login' %}">
+                            {%csrf_token%}
+                            <div class="form-group">
+                                {{ form|crispy }}
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <label class="form-label" for="password"></label>
+                                    <a class="link link-primary link-sm" href="{%url 'account_reset_password' %}">Forgot Code?</a>
+                                </div>
+                                
+                            </div>
+                            {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                            {% endif %}
+                            <div class="form-group">
+                                <button class="btn btn-lg btn-primary btn-block">Sign in</button>
+                            </div>
+                        </form>
+                       
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="nk-footer nk-auth-footer-full">
+                <div class="container wide-lg">
+                    <div class="row g-3">
+                        <div class="col-lg-6 order-lg-last">
+                            <ul class="nav nav-sm justify-content-center justify-content-lg-end">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Terms & Condition</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Privacy Policy</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Help</a>
+                                </li>
+                                <li class="nav-item dropup">
+                                    <a class="dropdown-toggle dropdown-indicator has-indicator nav-link" data-toggle="dropdown" data-offset="0,10"><span>English</span></a>
+                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                        <ul class="language-list">
+                                            <li>
+                                                <a href="#" class="language-item">
+                                                    <img src="{% static 'sandbox/images/flags/english.png' %}" alt="" class="language-flag">
+                                                    <span class="language-name">English</span>
+                                                </a>
+                                            </li>
+                                           
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="nk-block-content text-center text-lg-left">
+                                <p class="text-soft">&copy; 2021 InvestOdd. All Rights Reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- wrap @e -->
+    </div>
+    <!-- content @e -->
 </div>
 
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
-<p>{% blocktranslate %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktranslate %}</p>
-{% endif %}
-
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form|crispy }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
-  <button class="primaryAction btn btn-primary" type="submit">{% translate "Sign In" %}</button>
-</form>
 
 {% endblock %}
