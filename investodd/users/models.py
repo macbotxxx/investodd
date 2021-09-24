@@ -219,9 +219,10 @@ class UserActivity (BaseModel):
         help_text=_("The Host Name of the logged in user system")
     )
 
-    ip_address = models.IPAddressField(
+    ip_address = models.GenericIPAddressField(
         verbose_name=_("System IP Address"),
         null=True, blank=True, 
+        editable=False,
         help_text=_(" The system IP address to current login user")
     )
 
