@@ -142,22 +142,40 @@ class User(AbstractUser):
         help_text=_("The default currency of the investor. Currency will be sent against investors country of residence.")
     )
 
-    available_balance = models.IntegerField(
+    available_balance = models.FloatField(
         verbose_name=_("Available Balance"),
         null =True, blank=True, default = 0,
         help_text=_("The investors available balance for the account")
     )
 
-    withdrawal_balance = models.IntegerField(
+    crypto_available_balance = models.FloatField(
+        verbose_name=_("Crypto Balance"),
+        null =True, blank=True, default = 0,
+        help_text=_("The investors available balance in crypto currency , converting the available balance to crypto currency")
+    )
+
+    withdrawal_balance = models.FloatField(
         verbose_name=_("Withdrawal Balance"),
         null =True, blank=True, default = 0,
         help_text=_("The investors withdrable balance for the account")
     )
 
-    referral_bonus = models.IntegerField(
+    crypto_withdrawal_balance = models.FloatField(
+        verbose_name=_("Crypto Withdrawal Balance"),
+        null =True, blank=True, default = 0,
+        help_text=_("The investors withdrable balance in crypto converting the withdrawable balance to crypto currency")
+    )
+
+    referral_bonus = models.FloatField(
         verbose_name=_("Referral Bonus"),
         null =True, blank=True, default = 0,
         help_text=_("The investors referral bonus balance for the account")
+    )
+
+    crypto_referral_bonus = models.FloatField(
+        verbose_name=_("Crypto Referral Balance"),
+        null =True, blank=True, default = 0,
+        help_text=_("The investors withdrable balance in crypto converting the referral balance to crypto currency")
     )
 
    

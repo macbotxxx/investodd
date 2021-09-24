@@ -7,6 +7,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path("", include("frontend.urls")),
+    path("", include("investodd.users.urls")),
    
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),

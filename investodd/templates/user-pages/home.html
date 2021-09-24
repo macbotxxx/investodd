@@ -1,0 +1,135 @@
+{% extends "user-base.html" %}
+
+
+{% load static i18n humanize %}
+
+    {% block content %}
+
+                <!-- content @s -->
+                <div class="nk-content nk-content-fluid">
+                    <div class="container-xl wide-lg">
+                        <div class="nk-content-body">
+                            <div class="nk-block-head">
+                                <div class="nk-block-head-sub"><span>Welcome !</span> </div><!-- .nk-block-head-sub -->
+                                <div class="nk-block-between-md g-4">
+                                    <div class="nk-block-head-content">
+                                        <h2 class="nk-block-title fw-normal">{{ request.user.name | title }}</h2>
+                                        <div class="nk-block-des">
+                                            <p>Here's a summary of your account. Have fun!</p>
+                                        </div>
+                                    </div>
+                                    <div class="nk-block-head-content">
+                                        <ul class="nk-block-tools gx-3">
+                                          
+                                            <li><a href="#" class="btn btn-primary"><span>Invest & Earn</span> <em class="icon ni ni-arrow-long-right"></em></a></li>
+                                            <li><a href="#" class="btn btn-dim btn-outline-light"><span>Deposit</span> <em class="icon ni ni-arrow-long-right"></em></a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- .nk-block-between --> <br>
+                                <div class="example-alert">
+                                    <div class="alert alert-warning alert-icon alert-dismissible">
+                                        <em class="icon ni ni-alert-circle"></em> Update your account information from your profile to complete account setup. <a href="#"  class="alert-link">Update Porfile</a> <button class="close" data-dismiss="alert"></button></div>
+                                </div> <br>
+                                <div class="example-alert">
+                                    <div class="alert alert-info alert-icon alert-dismissible">
+                                        <em class="icon ni ni-alert-circle"></em> Update your account information from your profile to complete account setup. <a href="#"  class="alert-link">Update Porfile</a>  <button class="close" data-dismiss="alert"></button></div>
+                                </div>
+                            </div><!-- .nk-block-head -->
+                           
+                            <div class="nk-block">
+                               
+                                <div class="row g-gs">
+                                    <div class="col-sm-6 col-lg-4 col-xl-6 col-xxl-4">
+                                        <div class="card card-bordered is-dark">
+                                            <div class="nk-wgw">
+                                                <div class="nk-wgw-inner">
+                                                    <a class="nk-wgw-name" href="html/crypto/wallet-bitcoin.html">
+                                                        <div class="nk-wgw-icon is-default">
+                                                            <em class="icon ni ni-sign-usd"></em>
+                                                        </div>
+                                                        <h5 class="nk-wgw-title title">Available Balance</h5>
+                                                    </a>
+                                                    <div class="nk-wgw-balance">
+                                                        <div class="amount">{{ request.user.available_balance | intcomma }}<span class="currency currency-nio">{{ request.user.default_currency_id }}</span></div>
+                                                        <div class="amount-sm">{{ request.user.crypto_available_balance }}<span class="currency currency-usd">BTC</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="nk-wgw-actions">
+                                                    <ul>
+                                                        <li><a href="#"><em class="icon ni ni-arrow-down-left"></em><span>Deposit</span></a></li>
+                                                        <li><a href="#"><em class="icon ni ni-arrow-to-right"></em><span>Invest & Earn</span></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="nk-wgw-more dropdown">
+                                                    <em class="icon ni ni-info" data-toggle="tooltip" data-placement="right" title="The investors available balance both in USD and in BTC for the account"></em>
+                                                   
+                                                </div>
+                                            </div>
+                                        </div><!-- .card -->
+                                    </div><!-- .col -->
+                                    <div class="col-sm-6 col-lg-4 col-xl-6 col-xxl-4">
+                                        <div class="card card-bordered">
+                                            <div class="nk-wgw">
+                                                <div class="nk-wgw-inner">
+                                                    <a class="nk-wgw-name" href="html/crypto/wallet-bitcoin.html">
+                                                        <div class="nk-wgw-icon">
+                                                            <em class="icon ni ni-sign-usd"></em>
+                                                        </div>
+                                                        <h5 class="nk-wgw-title title">Withdrawable Balance</h5>
+                                                    </a>
+                                                    <div class="nk-wgw-balance">
+                                                        <div class="amount">{{ request.user.withdrawal_balance | intcomma }}<span class="currency currency-usd">{{ request.user.default_currency_id }}</span></div>
+                                                        <div class="amount-sm">{{ request.user.crypto_withdrawal_balance }}<span class="currency currency-btc">BTC</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="nk-wgw-actions">
+                                                    <ul>
+                                                        <li><a href="#"><em class="icon ni ni-arrow-up-right"></em> <span>Withdraw</span></a></li>
+                                                        <li><a href="#"><em class="icon ni ni-arrow-to-right"></em><span>Merge To Available Balance</span></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="nk-wgw-more dropdown">
+                                                    <em class="icon ni ni-info" data-toggle="tooltip" data-placement="right" title="The investors Withdrawable balance both in USD and in BTC for the account, which is withdrawable by clicking the withdraw button or merge to the main balance to re-invest and earn more."></em>
+                                                </div>
+                                            </div>
+                                        </div><!-- .card -->
+                                    </div><!-- .col -->
+                                    <div class="col-sm-6 col-lg-4 col-xl-6 col-xxl-4">
+                                        <div class="card card-bordered">
+                                            <div class="nk-wgw">
+                                                <div class="nk-wgw-inner">
+                                                    <a class="nk-wgw-name" href="html/crypto/wallet-bitcoin.html">
+                                                        <div class="nk-wgw-icon">
+                                                            <em class="icon ni ni-sign-usd"></em>
+                                                        </div>
+                                                        <h5 class="nk-wgw-title title">Referral Balance</h5>
+                                                    </a>
+                                                    <div class="nk-wgw-balance">
+                                                        <div class="amount">{{ request.user.referral_bonus | intcomma }}<span class="currency currency-btc">{{ request.user.default_currency_id }}</span></div>
+                                                        <div class="amount-sm">{{ request.user.crypto_referral_bonus}}<span class="currency currency-btc">BTC</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="nk-wgw-actions">
+                                                    <ul>
+                                                     
+                                                        <li><a href="#"><em class="icon ni ni-arrow-to-right"></em><span>Merge To Available Balance</span></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="nk-wgw-more dropdown">
+                                                    <div class="nk-wgw-more dropdown">
+                                                        <em class="icon ni ni-info" data-toggle="tooltip" data-placement="right" title="The investors Referral balance both in USD and in BTC for the account, merge to the main balance to re-invest and earn more."></em>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- .card -->
+                                    </div><!-- .col -->
+                                </div><!-- .row -->
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <!-- content @e -->
+
+    {% endblock  %}
+
