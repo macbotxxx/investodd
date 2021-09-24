@@ -1,4 +1,4 @@
-{% load static i18n compress%}
+{% load static i18n humanize compress%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,7 +60,7 @@
                         <a href="html/crypto/index.html" class="logo-link nk-sidebar-logo">
                             <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
                             <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
-                            <span class="nio-version">Crypto</span>
+                            <span class="nio-version">InvestOdd</span>
                         </a>
                     </div>
                     <div class="nk-menu-trigger mr-n2">
@@ -74,8 +74,8 @@
                                 <div class="user-account-info between-center">
                                     <div class="user-account-main">
                                         <h6 class="overline-title-alt">Available Balance</h6>
-                                        <div class="user-balance">2.014095 <small class="currency currency-btc">BTC</small></div>
-                                        <div class="user-balance-alt">18,934.84 <span class="currency currency-btc">BTC</span></div>
+                                        <div class="user-balance">{{ request.user.available_balance | intcomma  }} <small class="currency currency-usd"> {{ request.user.default_currency_id }}</small></div>
+                                        <div class="user-balance-alt">{{ request.user.crypto_available_balance }} <span class="currency currency-btc">BTC</span></div>
                                     </div>
                                     <a href="#" class="btn btn-white btn-icon btn-light"><em class="icon ni ni-line-chart"></em></a>
                                 </div>
@@ -110,11 +110,11 @@
                                     <div class="user-card-wrap">
                                         <div class="user-card">
                                             <div class="user-avatar">
-                                                <span>AB</span>
+                                                <span>{{ request.user.first_name.0 | title}}{{ request.user.last_name.0 | title}}</span>
                                             </div>
                                             <div class="user-info">
-                                                <span class="lead-text">Abu Bin Ishtiyak</span>
-                                                <span class="sub-text">info@softnio.com</span>
+                                                <span class="lead-text">{{ request.user.name | title }}</span>
+                                                <span class="sub-text">{{ request.user.email }}</span>
                                             </div>
                                             <div class="user-action">
                                                 <em class="icon ni ni-chevron-down"></em>
@@ -126,8 +126,8 @@
                                     <div class="user-account-info between-center">
                                         <div class="user-account-main">
                                             <h6 class="overline-title-alt">Available Balance</h6>
-                                            <div class="user-balance">2.014095 <small class="currency currency-btc">BTC</small></div>
-                                            <div class="user-balance-alt">18,934.84 <span class="currency currency-btc">BTC</span></div>
+                                            <div class="user-balance">{{ request.user.available_balance | intcomma }} <small class="currency currency-usd"> {{request.user.default_currency_id}}</small></div>
+                                            <div class="user-balance-alt">{{ request.user.crypto_available_balance }} <span class="currency currency-btc">BTC</span></div>
                                         </div>
                                         <a href="#" class="btn btn-icon btn-light"><em class="icon ni ni-line-chart"></em></a>
                                     </div>
@@ -160,7 +160,7 @@
                                         <li><a href="html/crypto/profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
                                     </ul>
                                     <ul class="link-list">
-                                        <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                        <li><a href="{% url 'account_logout' %}"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                     </ul>
                                 </div>
                             </div><!-- .nk-sidebar-widget -->
@@ -246,40 +246,7 @@
                                     </li>
                                 </ul><!-- .nk-menu -->
                             </div><!-- .nk-sidebar-menu -->
-                            <div class="nk-sidebar-widget">
-                                <div class="widget-title">
-                                    <h6 class="overline-title">Crypto Accounts <span>(4)</span></h6>
-                                    <a href="#" class="link">View All</a>
-                                </div>
-                                <ul class="wallet-list">
-                                    <li class="wallet-item">
-                                        <a href="#">
-                                            <div class="wallet-icon"><em class="icon ni ni-sign-kobo"></em></div>
-                                            <div class="wallet-text">
-                                                <h6 class="wallet-name">NioWallet</h6>
-                                                <span class="wallet-balance">30.959040 <span class="currency currency-nio">NIO</span></span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="wallet-item">
-                                        <a href="#">
-                                            <div class="wallet-icon"><em class="icon ni ni-sign-btc"></em></div>
-                                            <div class="wallet-text">
-                                                <h6 class="wallet-name">Bitcoin Wallet</h6>
-                                                <span class="wallet-balance">0.0495950 <span class="currency currency-btc">BTC</span></span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="wallet-item wallet-item-add">
-                                        <a href="#">
-                                            <div class="wallet-icon"><em class="icon ni ni-plus"></em></div>
-                                            <div class="wallet-text">
-                                                <h6 class="wallet-name">Add another wallet</h6>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div><!-- .nk-sidebar-widget -->
+                          
                             <div class="nk-sidebar-footer">
                                 <ul class="nk-menu nk-menu-footer">
                                     <li class="nk-menu-item">
@@ -302,24 +269,7 @@
                                                             <span class="language-name">English</span>
                                                         </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#" class="language-item">
-                                                            <img src="./images/flags/spanish.png" alt="" class="language-flag">
-                                                            <span class="language-name">Español</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="language-item">
-                                                            <img src="./images/flags/french.png" alt="" class="language-flag">
-                                                            <span class="language-name">Français</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="language-item">
-                                                            <img src="./images/flags/turkey.png" alt="" class="language-flag">
-                                                            <span class="language-name">Türkçe</span>
-                                                        </a>
-                                                    </li>
+                                                    
                                                 </ul>
                                             </div>
                                         </div>
@@ -369,8 +319,8 @@
                                                     <em class="icon ni ni-user-alt"></em>
                                                 </div>
                                                 <div class="user-info d-none d-md-block">
-                                                    <div class="user-status user-status-unverified">Unverified</div>
-                                                    <div class="user-name dropdown-indicator">Abu Bin Ishityak</div>
+                                                    <div class="user-status user-status-unverified">Verified</div>
+                                                    <div class="user-name dropdown-indicator">{{ request.user.name | title}}</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -378,19 +328,22 @@
                                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                                 <div class="user-card">
                                                     <div class="user-avatar">
-                                                        <span>AB</span>
+                                                        <span>{{ request.user.first_name.0 | title }}{{ request.user.last_name.0 | title }}</span>
                                                     </div>
                                                     <div class="user-info">
-                                                        <span class="lead-text">Abu Bin Ishtiyak</span>
-                                                        <span class="sub-text">info@softnio.com</span>
+                                                        <span class="lead-text">{{ request.user.name | title }}</span>
+                                                        <span class="sub-text">{{ request.user.email }}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="dropdown-inner user-account-info">
-                                                <h6 class="overline-title-alt">Nio Wallet Account</h6>
-                                                <div class="user-balance">12.395769 <small class="currency currency-btc">BTC</small></div>
-                                                <div class="user-balance-sub">Locked <span>0.344939 <span class="currency currency-btc">BTC</span></span></div>
-                                                <a href="#" class="link"><span>Withdraw Funds</span> <em class="icon ni ni-wallet-out"></em></a>
+                                                <h6 class="overline-title-alt">{{ request.site.name | title }} Wallet Account</h6>
+                                                <div class="user-balance">{{ request.user.available_balance | intcomma }} <small class="currency currency-usd"> {{ request.user.default_currency_id }}</small></div>
+                                                <div class="user-balance-sub"><span> {{ request.user.crypto_available_balance }} <span class="currency currency-btc">BTC</span></span></div>
+                                                <ul class="user-account-links">
+                                                    <li><a href="#" class="link"><span>Withdraw Funds</span> <em class="icon ni ni-wallet-out"></em></a></li>
+                                                    <li><a href="#" class="link"><span>Deposit Funds</span> <em class="icon ni ni-wallet-in"></em></a></li>
+                                                </ul>
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
@@ -402,7 +355,7 @@
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                    <li><a href="{% url 'account_logout' %}" ><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                                 </ul>
                                             </div>
                                         </div>

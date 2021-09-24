@@ -77,6 +77,7 @@ LOCAL_APPS = [
     "investodd.users.apps.UsersConfig",
     # Your stuff: custom apps go here
     "helpers",
+    "accounts.apps.AccountsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -134,6 +135,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.contrib.sites.middleware.CurrentSiteMiddleware",
+    # custom middleware
+    "accounts.middleware.OneSessionPerUserMiddleware",
 ]
 
 # STATIC
