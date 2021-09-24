@@ -1,3 +1,4 @@
+from helpers.common.basemodel import BaseModel
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db.models import CharField
@@ -195,3 +196,43 @@ class User(AbstractUser):
             str: URL for user detail.
         """
         return reverse("users:detail", kwargs={"username": self.pk})
+
+
+
+class UserActivity (BaseModel):
+    """ 
+    An Activity Log (also known as an Activity Diary ) is a written record of how a user spend time. 
+     you can then change the way that you work to eliminate them.
+    """
+
+    user = models.ForeignKey(
+        'User',
+        verbose_name=_("User Profile"),
+        on_delete=models.PROTECT,
+        help_text=_("The user for whom account belongs to")
+    )
+
+    hostname = models.CharField(
+        verbose_name=_("Host Name"),
+        max_length=355,
+        null=True,blank=True,
+        help_text=_("The Host Name of the logged in user system")
+    )
+
+    ip_address = models.IPAddressField(
+        verbose_name=_("System IP Address"),
+        null=True, blank=True, 
+        help_text=_(" The system IP address to current login user")
+    )
+
+    class Meta:
+        verbose_name = _("User Activity")
+        verbose_name_plural = _("User Activity")
+
+    def __str__(self):
+        return self.user
+
+
+    
+
+    
