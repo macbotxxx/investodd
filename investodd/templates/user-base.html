@@ -477,7 +477,16 @@
 
     {% block inline_javascript %}
     {# Script tags with only code, no src (defer by default) #}
-    
+    <script>
+        $(document).ready(function(){         
+          $(window).on("beforeunload", function(e) {
+              $.ajax({
+                      url: /accounts/logout,
+                      method: 'GET',
+                  })
+          });
+      });
+      </script>
     {% endblock inline_javascript %}
   </body>
 </html>

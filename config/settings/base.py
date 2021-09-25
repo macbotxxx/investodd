@@ -101,6 +101,8 @@ AUTH_USER_MODEL = "users.User"
 LOGIN_REDIRECT_URL = "my_account"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
 LOGIN_URL = "account_login"
+# https://docs.djangoproject.com/en/2.0/ref/settings/#std:setting-SESSION_EXPIRE_AT_BROWSER_CLOSE
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # PASSWORDS
 # ------------------------------------------------------------------------------

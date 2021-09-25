@@ -20,7 +20,7 @@
   
     <!-- Your stuff: Third-party CSS libraries go here -->
     {% compress css %}
-
+   
     <!-- Bundle and Base CSS -->
     <link rel="stylesheet" href="{% static 'sandbox/assets/css/dashlite.css' %}">
     <link id="skin-default" rel="stylesheet" href="{% static 'sandbox/assets/css/theme.css' %}">
@@ -65,7 +65,16 @@
     {% block modal %}{% endblock modal %}
 
     {% block inline_javascript %}
-    {# Script tags with only code, no src (defer by default) #}
+    <script>
+      $(document).ready(function(){         
+        $(window).on("beforeunload", function(e) {
+            $.ajax({
+                    url: '/accounts/logout',
+                    method: 'GET',
+                })
+        });
+    });
+    </script>
     
     {% endblock inline_javascript %}
   </body>

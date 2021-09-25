@@ -182,8 +182,8 @@ class User(AbstractUser):
    
 
     class Meta:
-        verbose_name = _("Register Investor")
-        verbose_name_plural = _("Register Investor")
+        verbose_name = _("All Registered Investors")
+        verbose_name_plural = _("All Registered Investors")
 
     def __str__(self):
         return str(self.email)
@@ -228,8 +228,8 @@ class UserActivity (BaseModel):
 
     class Meta:
         ordering = ('-created_date',)
-        verbose_name = _("User Activity")
-        verbose_name_plural = _("User Activity")
+        verbose_name = _("All Users Activity")
+        verbose_name_plural = _("All Users Activity")
 
     def __str__(self):
         return str(self.user)
