@@ -202,7 +202,7 @@ class User(AbstractUser):
 class UserActivity (BaseModel):
     """ 
     An Activity Log (also known as an Activity Diary ) is a written record of how a user spend time. 
-     you can then change the way that you work to eliminate them.
+    you can then change the way that you work to eliminate them.
     """
 
     user = models.ForeignKey(
@@ -227,11 +227,12 @@ class UserActivity (BaseModel):
     )
 
     class Meta:
+        ordering = ('-created_date',)
         verbose_name = _("User Activity")
         verbose_name_plural = _("User Activity")
 
     def __str__(self):
-        return self.user
+        return str(self.user)
 
 
     
