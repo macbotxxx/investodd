@@ -16,3 +16,12 @@ investodd v1.0-beta is a platform where individuals or organizations can invest 
 13. Deposit Payment Gateways  ( Wire Transfer , Crypto Wallet )
 14. Withdrawal Payment Gateway ( Crypto Wallet, PayPal )
 15. 2FA Authentication 
+
+
+
+
+6X63SVeZxiErCDGfMpwlIBBGLpfd_eGKyrKYezy2
+6X63SVeZxiErCDGfMpwlIBBGLpfd_eGKyrKYezy2
+K8_IWMM01J-XAETP1JUPRJKUK6OU8DCRACLL-Q6V
+
+55E085711963007C75C6

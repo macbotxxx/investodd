@@ -79,6 +79,8 @@ LOCAL_APPS = [
     "helpers",
     "accounts.apps.AccountsConfig",
     "investments.apps.InvestmentsConfig",
+    "transactions.apps.TransactionsConfig",
+    "payment_gateway.apps.PaymentGatewayConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
