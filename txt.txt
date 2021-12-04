@@ -1,0 +1,21 @@
+investodd v1.0-beta is a platform where individuals or organizations can invest on an asset or item with the goal of generating income or appreciation using crypto currency or any means available.
+**UPDATE**
+
+1. Email Verification
+2. Auth Middlware - to prevent double sessions.
+3. USD as default currency ID
+4. Storing User Log Activities
+5. Investment Plans Setup and Config
+6. All investments History 
+7. Export Data through PDF
+8. Professional Email Templates
+9. Customer Service App
+10. OTP verification
+11. Customized Mailing System
+12. Raising of Report Tickets 
+13. Deposit Payment Gateways  ( Wire Transfer , Crypto Wallet )
+14. Withdrawal Payment Gateway ( Crypto Wallet, PayPal )
+15. 2FA Authentication 
+
+
+
