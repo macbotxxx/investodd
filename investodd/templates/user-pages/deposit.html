@@ -1,0 +1,79 @@
+{% extends "user-base.html" %}
+
+{% block title %}My Account{% endblock title %}
+
+
+{% load static i18n humanize %}
+
+    {% block content %}
+        <!-- content @s -->
+        <div class="nk-content nk-content-fluid">
+            <div class="container-xl wide-lg">
+                <div class="nk-content-body">
+                    <div class="buysell wide-xs m-auto">
+                       
+                        <div class="buysell-title text-center">
+                            <h4 class="title">What do you want to buy!</h4>
+                        </div><!-- .buysell-title -->
+                        <div class="buysell-block">
+                            <form action="#" class="buysell-form" method="post">
+                                {%csrf_token%}
+                                <div class="buysell-field form-group"  >
+                                    <div class="form-label-group">
+                                        <label class="form-label">via Crypto Wallet</label>
+                                    </div>
+                                    <input type="hidden" value="btc" name="bs-currency" id="buysell-choose-currency">
+                                    <div class="dropdown buysell-cc-dropdown">
+                                        <a href="#" class="buysell-cc-choosen " data-toggle="dropdown">
+                                            <div class="coin-item coin-btc">
+                                                <div class="coin-icon">
+                                                    <em class="icon ni ni-sign-btc-alt"></em>
+                                                </div>
+                                                <div class="coin-info">
+                                                    <span class="coin-name">Bitcoin (BTC)</span>
+                                                    <span class="coin-text">Last Order: Nov 23, 2019</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                       
+                                    </div><!-- .dropdown -->
+                                </div><!-- .buysell-field -->
+                                <div class="buysell-field form-group not-visible" id="results-box" >
+                                   
+                                    
+                                </div><!-- .buysell-field -->
+
+                                <div class="buysell-field form-group">
+                                   
+                                    <div class="form-label-group">
+                                        <label class="form-label" for="buysell-amount">Amount to Buy</label>
+                                    </div>
+                                    <div class="form-control-group" id="search-form" >
+                                       
+                                        {{form.amount }}
+                                        <div class="form-dropdown">
+                                            <div class="text">USD<span>/</span></div>    
+                                        </div>
+                                    </div>
+                                    <div class="form-note-group">
+                                        <span class="buysell-min form-note-alt">Minimum: 10.00 USD</span>
+                                    </div>
+                                </div><!-- .buysell-field -->
+                              
+                                <div class="buysell-field form-action">
+                                    <button type="button" class="btn btn-lg btn-block btn-primary submits " disabled id="submits"  >Continue to Buy
+
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        <span class="sr-only">Loading...</span>
+                                    </button>
+                                </div><!-- .buysell-field -->
+                                <div class="form-note text-base text-center">Note: our transfer fee included, <a href="#">see our fees</a>.</div>
+                            </form><!-- .buysell-form -->
+                        </div><!-- .buysell-block -->
+                    </div><!-- .buysell -->
+                </div>
+            </div>
+        </div>
+    {% endblock  %}
+    
+              
